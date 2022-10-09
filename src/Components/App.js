@@ -1,12 +1,16 @@
 
 import LitJsSdk from "@lit-protocol/sdk-browser";
-import { useState } from "react";
-import { Button } from "./Styles";
+import { useRef, useState } from "react";
+import { Button, ChangeBu, Header, InputPost, Post, Posts } from "./Styles";
 
 
 export default function App() {
     const [encryptedSymetricKey, setEncryptedKey] = useState("");
     const [encryptedStringS, setencryptedString] = useState("");
+    const [messageC, setMessage] = useState("Create a new Post");
+    const [bought, setBought] = useState(false);
+    const [buyer, setBuyer] = useState(false);
+    const InputMessage = useRef(null);
     const chain = "goerli";
 
     async function connect() {
@@ -31,11 +35,12 @@ export default function App() {
         },
       ];
     async function signing() {
-
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain })
         const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(
-            "this is a secret message"
+           `${InputMessage.current.value}`
           );
+        
+          setMessage(InputMessage.current.value);
         const encryptedSymmetricKey = await window.litNodeClient.saveEncryptionKey({
             accessControlConditions,
             symmetricKey,
@@ -54,7 +59,6 @@ export default function App() {
     }
 
     async function decrypt() {
-
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: "goerli" });
         const symmetricKey = await window.litNodeClient.getEncryptionKey({
         accessControlConditions,
@@ -67,6 +71,9 @@ export default function App() {
         symmetricKey
       );
       console.log(decryptedString)
+      if(decryptedString == messageC) {
+        setBought(true);
+      }
 
   return { decryptedString }
     }
@@ -77,16 +84,47 @@ export default function App() {
 
     return (
         <>
-            <Button onClick={() => connect()}>
-                click me
-            </Button>
+         <Header>
 
-            <Button onClick={() => signing()}>
-                Post
-            </Button>
+         <Button  onClick={() => connect()}>
+            Connect
+        </Button>
+      <InputPost placeholder="Tweet" ref={InputMessage}>
+                
+            </InputPost>
+        <Button  onClick={() => signing()}>
+            Post
+        </Button>
             <Button onClick={() => decrypt()}>
                 Decode
             </Button>
+         </Header>
+
+         <Posts>
+<Post>
+    {messageC != undefined ? 
+    <>
+    </> : 
+    "Create a Post"
+    }
+
+    {buyer ? 
+<>
+{bought ? messageC : "Pay Content"}
+</>    
+:
+<>
+{messageC}
+</>
+}
+</Post>
+ 
+ <ChangeBu onClick={() => setBuyer(!buyer)}>
+   Change
+ </ChangeBu>
+         </Posts>
+ 
+
         </>
     )
 }
