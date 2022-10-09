@@ -1,0 +1,60 @@
+{
+  "name": "website5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "@ethersproject/providers": "^5.6.7",
+    "@lit-protocol/sdk-browser": "^1.1.228",
+    "@lit-protocol/sdk-nodejs": "^1.1.228",
+    "@walletconnect/browser-utils": "^1.7.8",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/walletconnect-connector": "^6.2.13",
+    "@web3-react/walletlink-connector": "^6.2.14",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "css-loader": "^6.7.1",
+    "ethers": "^5.6.7",
+    "file-loader": "^6.2.0",
+    "framer-motion": "^6.3.3",
+    "html-webpack-plugin": "^5.5.0",
+    "https-browserify": "^1.0.0",
+    "json-rpc-engine": "^6.1.0",
+    "os-browserify": "^0.3.0",
+    "path": "^0.12.7",
+    "react": "^18.1.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "style-loader": "^3.3.1",
+    "styled-components": "^5.3.6",
+    "url": "^0.11.0",
+    "web-vitals": "^2.1.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
